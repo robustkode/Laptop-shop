@@ -1,0 +1,1 @@
+ALTER TABLE `product_orders` ADD `created_day` integer;

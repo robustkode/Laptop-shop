@@ -1,0 +1,1 @@
+ALTER TABLE `product_orders` ADD `user_id` text(36) REFERENCES users(id);

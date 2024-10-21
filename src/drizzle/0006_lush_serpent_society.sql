@@ -1,0 +1,1 @@
+ALTER TABLE `product_orders` ADD `status` text;
