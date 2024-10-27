@@ -43,7 +43,6 @@ export async function createOrderUseCase(input, user) {
       productVariantId,
       value
     );
-    console.log(existingProductVariant.inventory, "here");
     if (
       !existingProductVariant ||
       existingProductVariant.productVariant.productId !== id
@@ -54,7 +53,6 @@ export async function createOrderUseCase(input, user) {
       throw new NotFoundError("Less product inventory.");
     }
 
-    console.log(existingProductVariant, "pop");
     await createOrder({
       userId: user.id,
       productId: id,
@@ -176,15 +174,7 @@ export async function getMonthlysStatUseCase(month) {
     lastMonthEnd
   );
 
-  // console.log({
-  //   start: start,
-  //   end: end,
-  //   brandShare: brandsShare,
-  //   buyers: MonthBuyers[0].count,
-  //   lMBuyers: LastMonthBuyers[0].count,
-  //   sandR: MonthSellandRevenue,
-  //   lMSandR: lastMonthSellandRevenue,
-  // });
+
   return {
     start: start,
     end: end,

@@ -24,27 +24,23 @@ export default function ProductCard({
   id,
   productVariants,
   style = "",
+  images,
 }) {
-  //! show label not data from database
-  //! rating
-  //! items orientation
   return (
-    <div className={cn("flex sm:flex-col basis-64 grow gap-8", style)}>
-      {/* <div className={style}> */}
+    <div className={cn("flex sm:flex-col basis-64 grow gap-4 flex-wrap sm:flex-nowrap", style)}>
       <div className="">
         <Image
-          src={"/laptop.jpg"}
+          src={images}
           alt="alt"
           width={0}
           height={0}
           sizes="100vw"
-          className="w-[100%]  object-cover"
+          className="w-[100%] object-cover"
           priority
         />
       </div>
       <div>
         <div>
-          {/* <Link href={ edit ?  `/admin/products/${id}` : `/products/${id}`}> */}
           <Link href={"/products/" + id}>
             <h3 className="header">{name}</h3>
             <p className="whitespace-pre-line">

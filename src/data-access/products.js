@@ -145,24 +145,11 @@ export async function getFiteredProducts({
         }
       })
     );
-    // const _ = values.map((value) => {
-    //   if (!value.equality) {
-    //     return `eq(products.ram, ${value.value})}`;
-    //   } else if (value.equality === EQUALITY.less) {
-    //     return `lte(products.ram, ${value.value})}`;
-    //   } else {
-    //     return `gte(products.ram, ${value.value})}`;
-    //   }
-    // });
+
     const _ = prepareComparisonQuery(ram, RAM, "ram");
 
-    console.log(_, "ahjfhjh");
-    // if (value.length) {
-    //   // if it is one
-    //   //if it is many
-    //   const ramFilter = or();
-    conditions.ram = n;
-    // }
+   conditions.ram = n;
+
   }
 
   //order

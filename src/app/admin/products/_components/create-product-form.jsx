@@ -107,7 +107,7 @@ export default function ProductForm({
   const [tagValue, setTagValue] = useState("");
   const [similarTags, setSimilarTags] = useState([]);
   const [showSimilar, setShowSimilar] = useState(false);
-  const [file, setFile] = useState(data?.coverImage || null);
+  const [file, setFile] = useState(data?.images || null);
 
   const form = useForm({
     mode: "onchange",
@@ -150,7 +150,9 @@ export default function ProductForm({
     data ? updateProductAction : createProductAction
   );
 
-  const { execute: getUrl } = useActionWrapper(getPresignedPostUrlAction);
+  const { execute: getUrl, isPending: isUpoloadingPending } = useActionWrapper(
+    getPresignedPostUrlAction
+  );
 
   const onSubmit = async (values) => {
     const urlRes = await uploadImage(getUrl, file, toast);
@@ -169,15 +171,10 @@ export default function ProductForm({
   };
 
   const handleSetValue = (val, cat, setFun) => {
-    // const oldVal = form.getValues(cat);
-    // const oldValList = oldVal ? oldVal.split(",") : [];
     if (selectedTags.includes(val)) {
       const newValList = selectedTags.filter((v) => v !== val);
-      // form.setValue(cat, newValList.join(","));
       setFun([...newValList]);
     } else {
-      // oldValList.push(val);
-      // form.setValue(cat, oldValList.join(","));
       setFun([...selectedTags, val]);
     }
   };
@@ -218,11 +215,11 @@ export default function ProductForm({
   }, [allTags]);
 
   return (
-    <div>
+    <div className="">
       {!data ? (
-        <h2 className="page-header">Post a product</h2>
+        <h2 className="page-header mb-6">Post a product</h2>
       ) : (
-        <h2 className="page-header">Update product</h2>
+        <h2 className="page-header mb-6">Update product</h2>
       )}
 
       <Form {...form}>
@@ -523,7 +520,10 @@ export default function ProductForm({
               </AlertDescription>
             </Alert>
           )}
-          <LoaderButton isLoading={isPending} className={"mt-8 ml-auto"}>
+          <LoaderButton
+            isLoading={isPending || isUpoloadingPending}
+            className={"mt-8 ml-auto"}
+          >
             {data ? "Update" : "Post"}
           </LoaderButton>
         </form>

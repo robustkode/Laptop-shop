@@ -6,7 +6,6 @@ import { runSeed } from "@/db/seed";
 export default function SeedPage() {
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("oops");
     ("use server");
     await runSeed();
   };

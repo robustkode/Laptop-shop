@@ -3,17 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import P from "./_sections/powerful-computers";
+import Powerful from "./_sections/powerful-computers";
 import Gaming from "./_sections/gaming";
 import { Phone } from "lucide-react";
 import { Send } from "lucide-react";
 import Budget from "./_sections/budget-computers";
 import Footer from "./_components/footer";
 import HelpCard from "./_components/help-card";
+import PageHero from "./_components/page-hero";
+import { description } from "../admin/_components/sell-chart";
 
 export default function Home() {
   return (
-    <main>
+    <main className="">
       <section className="bg-primary-var text-primary-foreground my-0 py-12">
         <Container as="div">
           <h1 className="header text-4xl pb-6">
@@ -44,7 +46,7 @@ export default function Home() {
           </div>
         </Container>
       </section>
-      <section>
+      <section className="py-12">
         <Container>
           <h2 className="text-lg">
             For decades, we have been dedicated to serving our customers with
@@ -95,9 +97,9 @@ export default function Home() {
           </div>
         </Container>
       </section>
-      <P />
+      <Powerful />
       <Gaming />
-      <section>
+      <section className="py-12">
         <Container>
           <HelpCard />
         </Container>

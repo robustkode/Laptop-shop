@@ -18,12 +18,12 @@ function HelpCard() {
         <Button>
           <Phone className="icon-lg mr-4" /> <p>0921212121</p>
         </Button>
-        <Button variant="outline" className="bg-transparent border-primary">
-          <Link
-            href={"t.me/my-computer"}
-            className="flex items-center  gap-2 text-primary"
-          >
-            <Send className="icon-lg text-primary" />
+        <Button
+          variant="outline"
+          className="bg-transparent border-primary text-primary "
+        >
+          <Link href={"t.me/my-computer"} className="flex items-center  gap-2 ">
+            <Send className="icon-lg" />
             Telegram
           </Link>
         </Button>

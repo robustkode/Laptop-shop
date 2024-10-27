@@ -6,10 +6,7 @@ import { getCurrentUser } from "@/lib/session";
 export const GET = async (req) => {
   try {
     const user = await assertModerator();
-    console.log(user, "user");
     const orders = await getUserOrders(user.id);
-    //console.log(orders, "ordrs");
-    //const user = await getCurrentUser();
     return new Response(JSON.stringify(orders));
   } catch (error) {
     const isAllowedError = error instanceof PublicError;

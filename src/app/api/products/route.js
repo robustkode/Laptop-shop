@@ -8,12 +8,10 @@ import * as z from "zod";
 const PAGE_SIZE = 10;
 export const GET = async (req) => {
   try {
-    console.log("hit hit");
     const schema = z.coerce.number();
     let page = req.nextUrl.searchParams.get("pageParam");
     const pageParam = schema.parse(page);
     const products = await fetchProductsPaginated(pageParam, 5, "desc");
-    console.log(products, "products");
     return new Response(JSON.stringify(products));
   } catch (error) {
     const isAllowedError = error instanceof PublicError;
@@ -33,7 +31,6 @@ export const GET = async (req) => {
 
 export const POST = async (req) => {
   try {
-    console.log("oops");
     const { body } = await req.json();
 
     const data = { ...body };

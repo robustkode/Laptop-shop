@@ -23,24 +23,26 @@ export default function DropImage({ img, setImg }) {
     } catch (_) {}
     setImg(null);
   };
-  console.log(img, isValidURL(img), img?.preview, "drop");
 
   return (
     <div className="mb-4">
       {isValidURL(img) || img?.preview ? (
-        <div className="relative rounded-sm">
-          <Image
-            src={isValidURL(img) ? img : img.preview}
-            alt={img?.name}
-            className="w-full h-96 object-cover rounded-sm"
-            width={100}
-            height={200}
-          />
-          <div className="absolute top-2 right-2 bg-primary-lig rounded-full p-3">
-            <X
-              className="icon-lg text-secondary cursor-pointer"
-              onClick={handleDelete}
+        <div className="rounded-sm">
+          <div className="relative">
+            <Image
+              src={isValidURL(img) ? img : img.preview}
+              alt="product-image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-[100%] object-cover max-w-[300px] mx-auto"
             />
+            <div className="absolute top-2 right-2 bg-primary-lig rounded-full p-3">
+              <X
+                className="icon-lg text-secondary cursor-pointer"
+                onClick={handleDelete}
+              />
+            </div>
           </div>
         </div>
       ) : (

@@ -8,13 +8,21 @@ import { LoaderButton } from "@/components/loader-button";
 import ProductCard from "../products/_components/product-card";
 import Link from "next/link";
 import OrderButton from "./_components/order-button";
+import PageHero from "../_components/page-hero";
+
+const HERO = {
+  header: "Your favourite laptops",
+  description:
+    "With just a few clicks, you can place your order and have your laptop.",
+};
 
 export default function CartPage() {
   const { cartProducts, addRemoveCartItem } = useCartContext();
 
   return (
     <main>
-      <Container>
+      <PageHero {...HERO} />
+      <Container className={"my-12"}>
         <div className="flex flex-col min-h-[50vh]">
           {!cartProducts || !cartProducts.length ? (
             <div className="flex flex-col w-full justify-center mt-16">
@@ -33,7 +41,7 @@ export default function CartPage() {
                 <div className="flex gap-4 items-end mt-4">
                   <OrderButton
                     order={{
-                      id: "123",
+                      id: product.id,
                       quantity: 1,
                       productVariant: product.productVariants,
                     }}

@@ -14,12 +14,13 @@ export default function OrderCard({ order }) {
     condition,
     status,
     showCompleted = false,
+    images,
   } = order.product;
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-8 items-center flex-wrap">
       <div className="">
         <Image
-          src={"/laptop.jpg"}
+          src={images}
           alt="alt"
           width={0}
           height={0}
@@ -46,7 +47,7 @@ export default function OrderCard({ order }) {
           </p>
           <h4 className="font-header text-primary text-lg">
             {order.price}
-            <span className="text-muted-foreground text-md">Birr</span>
+            <span className="text-muted-foreground text-md"> Birr</span>
           </h4>
           {order.productVariantId ? (
             <div>

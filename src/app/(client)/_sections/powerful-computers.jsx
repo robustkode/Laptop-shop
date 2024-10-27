@@ -13,7 +13,7 @@ const cachedResponse = cache(
 
 export default async function Powerful() {
   return (
-    <section className="bg-primary-bg py-1">
+    <section className="bg-primary-bg py-12">
       <Suspense fallback="loading...">
         <ProductsSuspense />
       </Suspense>

@@ -22,7 +22,7 @@ export default function Navbar() {
         <div>
           <Button variant="nav-link" className="p-0 m-0">
             <Link href={"/"}>
-              <h1 className="font-header text-lg">Fulan</h1>
+              <h1 className="font-header text-xl font-bold">Fulan-shop</h1>
             </Link>
           </Button>
         </div>
@@ -41,7 +41,7 @@ export default function Navbar() {
                     <Heart />
                   </Button>
                   {cartProducts.length ? (
-                    <span className="absolute -top-2 -right-2 bg-secondary rounded-full text-sm w-[20px] h-[20px] text-secondary-foreground flex items-center justify-center">
+                    <span className="absolute top-0 right-1 bg-secondary rounded-full text-sm w-[20px] h-[20px] text-secondary-foreground flex items-center justify-center">
                       {cartProducts.length}
                     </span>
                   ) : (
@@ -92,7 +92,7 @@ export default function Navbar() {
                       <Heart />
                     </Button>
                     {cartProducts.length ? (
-                      <span className="absolute -top-2 -right-2 bg-secondary rounded-full text-sm w-[20px] h-[20px] text-secondary-foreground flex items-center justify-center">
+                      <span className="absolute top-0 right-1 bg-secondary rounded-full text-sm w-[20px] h-[20px] text-secondary-foreground flex items-center justify-center">
                         {cartProducts.length}
                       </span>
                     ) : (

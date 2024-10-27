@@ -28,9 +28,6 @@ export const POST = async (req) => {
       ...filters,
       pageSize: PRODUCTS_PER_PAGE,
     });
-    console.log("Other");
-    //console.log(filters, "fiters");
-    //console.log(products, "products");
     return new Response(JSON.stringify(products));
   } catch (error) {
     const isAllowedError = error instanceof PublicError;

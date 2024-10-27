@@ -32,29 +32,7 @@ export async function createProductVariant(values) {
   return id;
 }
 
-// export async function getSimilarProductVariant(
-//   variantId,
-//   productId,
-//   variantName
-// ) {
-//   //! fix this query
-//   const variants = await db.query.productVariants.findMany({
-//     where: and(
-//       eq(productVariants.variantId, variantId),
-//       eq(productVariants.productId, productId)
-//     ),
 
-//     with: {
-//       productVariantValues: true,
-//     },
-//   });
-
-//   console.log(variants, "vars");
-//   const similarVariant = variants.find(
-//     (variant) => variant.productVariantValues.name === variantName
-//   );
-//   return similarVariant;
-// }
 export async function getSimilarProductVariant(
   variantId,
   productId,
@@ -175,7 +153,6 @@ export async function getAllProductVariants(id) {
       },
     },
   });
-  console.log(result);
   return result;
 }
 

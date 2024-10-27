@@ -1,27 +1,40 @@
 "use client";
+import { useLocalStorage } from "@/hooks/use-localstorage";
 import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext(null);
 
 export function CartContextProvider({ children }) {
-  const [cartProducts, setCartProducts] = useState([]);
-  const [cartProductVariants, setCartProductVariants] = useState({});
+  const { getItem, setItem } = useLocalStorage("fulan-cart-product");
+  const { getItem: getVariant, setItem: setVarinat } =
+    useLocalStorage("fulan-cart-product");
+
+  const [cartProducts, setCartProducts] = useState(getItem() ? getItem() : []);
+  const [cartProductVariants, setCartProductVariants] = useState(
+    getVariant() ? getVariant() : {}
+  );
 
   const addRemoveCartItem = (product) => {
     const isInCart = cartProducts.some((item) => item.id === product.id);
     if (isInCart) {
-      setCartProducts(cartProducts.filter((item) => item.id !== product.id));
+      setCartProducts((_) => {
+        const newVal = cartProducts.filter((item) => item.id !== product.id);
+        setItem(newVal);
+        return newVal;
+      });
     } else {
       const productVariants =
         cartProductVariants.productId === product.id
           ? { ...cartProductVariants }
           : null;
-      setCartProducts((prevProducts) => [
-        ...prevProducts,
-        { ...product, productVariants },
-      ]);
+      setCartProducts((prevProducts) => {
+        const newVal = [...prevProducts, { ...product, productVariants }];
+        setItem(newVal);
+        return newVal;
+      });
     }
     setCartProductVariants({});
+    setVarinat({});
   };
   // const addRemoveCartItemVariant = (variant) => {
   //   setCartProductVariants((prev) => {
@@ -59,8 +72,12 @@ export function CartContextProvider({ children }) {
       //   return { ...prev, variants: [...prev.variants, variant] };
       // }
       //});
-      if (prev.id === variant.id) return {};
-      else return variant;
+      let newVal = variant;
+      // if (prev.id === variant.id) return {};
+      // else return variant;
+      if (prev.id === variant.id) newVal = {};
+      setVarinat(variant);
+      return variant;
     });
   };
 

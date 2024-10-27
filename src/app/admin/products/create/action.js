@@ -11,6 +11,7 @@ import {
 import { signInUseCase } from "@/use-access/users";
 import { config } from "dotenv";
 import { partition } from "lodash";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -46,7 +47,6 @@ export const createProductAction = async (input) => {
       data.tags,
       (tag) => tag.id === null
     );
-    // console.log(newTags, existingTags, "oop");
     const { tags, ...rest } = data;
     id = await createProductUseCase({ input: rest, newTags, existingTags });
   } catch (error) {
@@ -82,14 +82,13 @@ export const updateProductAction = async (input) => {
   let id = input.id;
   try {
     const data = schema.parse(input);
-    // await rateLimitByKey({ key: input.email, limit: 3, window: 10000 });
     const [newTags, existingTags] = partition(
       data.tags,
       (tag) => tag.id === null
     );
-    // console.log(newTags, existingTags, "oop");
     const { tags, ...rest } = data;
     await updateProductUseCase({ input: rest, newTags, existingTags });
+    revalidatePath("/products/" + data.id);
   } catch (error) {
     console.log("create product error");
     return handleError(error);

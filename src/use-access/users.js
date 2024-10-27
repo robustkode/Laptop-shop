@@ -30,18 +30,6 @@ export async function signInUseCase({ getUser, identifier, input }) {
   return { id: user.id, email: user.email, role: user.role, phone: user.phone };
 }
 
-// export async function signUpUseCaseByEmail(input) {
-//   const { email, password, ...rest } = input;
-//   const existingUser = await getCustomerByEmail(email);
-//   if (existingUser) {
-//     throw new PublicError("User exists with this email");
-//   }
-//   //! create transaction
-//   const id = await createUser({ password });
-//   console.log(id, "ex");
-
-//   await createCustomer({ userId: id, email, ...rest });
-// }
 
 export async function signUpUseCase({ getUser, identifier, input, message }) {
   const { name, email, phone, password, ...rest } = input;
@@ -69,7 +57,6 @@ export async function signUpGoogleUseCase(input) {
     email,
     accountType: "google",
   });
-  console.log(id, role, "here");
   await createCustomer({ userId: id, emailVerified: 1 });
   return { id, role, email, phone };
 }

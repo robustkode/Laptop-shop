@@ -34,7 +34,6 @@ function useActionWrapper(serverAction) {
     try {
       //receive successful responsein  format { success: { data } }
       const result = await serverAction(...args);
-      console.log(result, "result");
       if (result?.error) {
         setError(result.error);
       } else {

@@ -30,7 +30,6 @@ export default function useActionWrapper(action) {
 
     try {
       const result = await action(...args);
-      console.log(result, "wrapper");
       if (result?.error) {
         dispatch({ type: "ERROR", payload: result.error });
       } else {
@@ -38,7 +37,6 @@ export default function useActionWrapper(action) {
       }
       return result;
     } catch (err) {
-      console.log(err, "what");
       dispatch({
         type: "ERROR",
         payload: {

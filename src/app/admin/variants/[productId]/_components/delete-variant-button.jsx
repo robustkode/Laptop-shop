@@ -6,7 +6,6 @@ export default function DeleteVariantButton({ tobedeltedId, productId }) {
   const handleDelete = async (tobedelted) => {
     const response = await deleteProductVarianAction(tobedelted);
     if (!response || !response.error) {
-      console.log(response, "fat");
       queryClient.invalidateQueries(["variants", productId]);
     }
     return response;

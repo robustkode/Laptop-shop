@@ -94,7 +94,6 @@ export function compare(oldList, newList) {
 
 export function syncUrl(filters) {
   const urlParams = [];
-  //console.log(Object.entries(filters), "gg");
   Object.entries(filters).map((filter) => {
     if (Array.isArray(filter[1]) && filter[1].length) {
       const filterParam = new URLSearchParams();

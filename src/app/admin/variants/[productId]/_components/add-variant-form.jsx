@@ -58,7 +58,6 @@ export default function AddVariantForm({
   const { execute, isPending, error } = useActionWrapper(addVaraintAction);
 
   const handleFocus = () => {
-    console.log(true);
     setShowOptions(true);
   };
 

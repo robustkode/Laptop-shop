@@ -20,7 +20,6 @@ const cachedProduct = cache(
     return getProductById(id);
   },
   ["product"],
-  //!   how to add id here
   { tags: ["product"] }
 );
 
@@ -79,18 +78,15 @@ async function ProductSuspense({ id }) {
           </div>
           <div>
             <Image
-              src={"/laptop.jpg"}
-              alt="alt"
+              src={product.images}
+              alt="product-image"
               width={0}
               height={0}
               sizes="100vw"
-              className="w-[100%] object-cover max-w-[400px] mx-auto"
+              className="w-[100%] object-cover max-w-[300px] mx-auto"
               priority
             />
           </div>
-          {/* <Suspense fallback={<div>Loading...</div>}>
-              <VariantsSuspense id={id} />
-            </Suspense> */}
           <ProductVariants id={id} />
           <section>
             <h2 className="sub-header">Overview</h2>

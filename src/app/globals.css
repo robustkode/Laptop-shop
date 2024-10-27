@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensure box model is consistent */
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -143,9 +148,7 @@
   @apply text-header font-header;
 }
 
-section {
-  @apply my-12;
-}
+
 
 /* icons */
 

@@ -14,7 +14,6 @@ export const GET = async (req) => {
     const schema = z.coerce.number();
     const month = schema.safeParse(monthParam);
     const stat = await getMonthlysStatUseCase(month.success ? month.data : 0);
-    console.log(stat, "stat");
     return new Response(JSON.stringify(stat));
   } catch (error) {
     const isAllowedError = error instanceof PublicError;

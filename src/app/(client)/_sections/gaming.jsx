@@ -14,9 +14,11 @@ const cachedResponse = cache(
 
 export default async function Gaming() {
   return (
-    <Suspense fallback="loading...">
-      <ProductsSuspense />
-    </Suspense>
+    <section className="py-12">
+      <Suspense fallback="loading...">
+        <ProductsSuspense />
+      </Suspense>
+    </section>
   );
 }
 

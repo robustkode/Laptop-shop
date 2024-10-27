@@ -27,7 +27,6 @@ export default function OrderButton({
     }
 
     const result = await execute(params);
-    console.log(result, "button");
     if (result?.error) {
       toast({
         title: "Uh oh",

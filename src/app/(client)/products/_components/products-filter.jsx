@@ -76,7 +76,6 @@ function ProductsFiter() {
 
 function Filters() {
   const { filters, dispatch } = useFilterContext();
-  console.log(filters.price);
   return (
     <div className="flex flex-col gap-2">
       <Accordion type="multiple">

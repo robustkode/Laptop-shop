@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
       <body className={roboto.className}>
         <Providers>
           <Navbar />
-          {moderator ? <AdminNavbar /> : ""}
+          {/* {moderator ? <AdminNavbar /> : ""} */}
           {children}
         </Providers>
         <Toaster />

@@ -13,9 +13,12 @@ const cachedResponse = cache(
 
 export default async function Budget() {
   return (
-    <Suspense fallback="loading...">
+    <section className="py-12">
+      <Suspense fallback="loading...">
       <ProductsSuspense />
     </Suspense>
+    </section>
+    
   );
 }
 

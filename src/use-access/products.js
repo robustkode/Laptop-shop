@@ -37,7 +37,7 @@ export async function createProductUseCase({ input, newTags, existingTags }) {
       });
       createdTags = await createTags(inputTags);
     } catch (_) {
-      console.log(_, "tag error");
+      console.log(_);
     }
   }
   const allTags = existingTags
