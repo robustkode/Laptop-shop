@@ -85,17 +85,17 @@ export default function SignUpForm() {
   const form = useForm({
     resolver: zodResolver(signUpSchema(phoneMode)),
     defaultValues: {
-      password: "123Abc*",
-      passwordConfirm: "123Abc*",
+      password: "Aa1234!",
+      passwordConfirm: "Aa1234!",
       name: "ousa",
-      email: "user1@test.com",
+      email: "user2@test.com",
     },
   });
 
   const onSubmit = async (values) => {
     await execute(values);
     if (!error) {
-      router.push(callBackUrl);
+      router.push(`/sign-in?callbackUrl=${callBackUrl ? callBackUrl : "/"}`);
     }
   };
 

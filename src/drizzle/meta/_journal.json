@@ -64,6 +64,13 @@
       "when": 1729325320410,
       "tag": "0008_light_ken_ellis",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1730011184076,
+      "tag": "0009_bizarre_kronos",
+      "breakpoints": true
     }
   ]
 }

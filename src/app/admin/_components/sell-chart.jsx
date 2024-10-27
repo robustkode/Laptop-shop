@@ -16,8 +16,8 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { convertUnixToStandardDate, getMonthTimestamps } from "@/lib/time";
-import { apiClient, keepPreviousData } from "@/lib/api-client";
-import { useQuery } from "@tanstack/react-query";
+import { apiClient } from "@/lib/api-client";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { data } from "autoprefixer";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";

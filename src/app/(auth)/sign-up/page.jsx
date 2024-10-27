@@ -6,7 +6,6 @@ import { redirect } from "next/dist/server/api-utils";
 export default async function SignUp() {
   const session = await getSession();
   if (session) {
-    //! redirect to where they were
     redirect("/");
   }
   return (

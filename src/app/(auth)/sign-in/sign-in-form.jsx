@@ -54,20 +54,21 @@ const signInSchema = (phone = true) => {
 export default function SignInForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [phoneMode, setPhoneMode] = useState(true);
+  const [phoneMode, setPhoneMode] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(signInSchema(phoneMode)),
     defaultValues: {
-      password: "123456",
+      password: "Aa1234!",
+      email: "user2@test.com",
     },
   });
 
-  const callbackUrl = searchParams.get("callbackUrl") || "";
-  const callBackPath = callbackUrl.match(/^http:\/\/localhost:3000(.*)/);
-  const forwardUrl = callBackPath ? callBackPath[1] : "/";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callBackPath = callbackUrl.match(/^\/.*/);
+  const forwardUrl = callBackPath ? callBackPath[0] : "/";
 
   async function onSubmit(values) {
     setLoading(true);
@@ -191,7 +192,7 @@ export default function SignInForm() {
         <p className="text-center text-small">
           Don&apos;t have an account? Sign up{" "}
           <Link
-            href={"/sign-up?callBackUrl=" + forwardUrl}
+            href={"/sign-up?callbackUrl=" + forwardUrl}
             className="text-primary"
           >
             Here.

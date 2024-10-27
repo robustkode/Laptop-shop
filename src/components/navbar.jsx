@@ -6,12 +6,13 @@ import { CarTaxiFront } from "lucide-react";
 import { Laptop } from "lucide-react";
 import { Heart } from "lucide-react";
 import { Button } from "./ui/button";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { cartProducts } = useCartContext();
   const { data, status } = useSession();
-
+  const pathname = usePathname();
   return (
     <header className="pb-0 bg-primary text-primary-foreground">
       <Container
@@ -61,12 +62,15 @@ export default function Navbar() {
             <Button
               variant="outline"
               className="bg-primary hover:text-muted/70 hover:border-muted/70"
+              onClick={() => signOut()}
             >
-              <Link href={"/api/auth/signout"}>Sign out</Link>
+              Sign out
             </Button>
           ) : (
             <Button variant="secondary">
-              <Link href={"/sign-in"}>Sign in</Link>
+              <Link href={`/sign-in?callBackUrl="${pathname ? pathname : "/"}`}>
+                Sign in
+              </Link>
             </Button>
           )}
         </div>

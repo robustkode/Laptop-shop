@@ -264,7 +264,7 @@ export async function getProducts(column, limit = 6, order = "desc") {
 
 export async function getProductsByTag(tagId, limit = 6) {
   //! return only active products
-  const result = await db.query.productTags.findMany({
+  let result = await db.query.productTags.findMany({
     where: eq(productTags.tagId, tagId),
     limit: limit,
     columns: {},

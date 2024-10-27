@@ -12,7 +12,7 @@ export default function CreateProduct() {
     <main>
       <Container>
         {/* //! */}
-        <ProductForm datas={{ product: null, tags: data ? data : [] }} />
+        <ProductForm datas={{ product: null, tags: [] }} />
       </Container>
     </main>
   );

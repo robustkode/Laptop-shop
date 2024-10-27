@@ -66,7 +66,7 @@ export const config = {
           return false;
         }
       }
-      console.log("not-google");
+
       return true;
     },
   },

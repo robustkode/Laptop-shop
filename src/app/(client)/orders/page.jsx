@@ -21,7 +21,7 @@ export default function Orders() {
   const { session } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/api/auth/signin?callbackUrl=/cart");
+      redirect("/sign-in?callbackUrl=/orders");
     },
   });
   const { data, isPending, error, refetch } = useQuery({
