@@ -38,3 +38,8 @@ next-env.d.ts
 
 next.md
 sqlite.db
+
+
+s3.js
+s3/*
+cors.xml

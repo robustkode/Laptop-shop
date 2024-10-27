@@ -3,6 +3,7 @@ import { afterLoginUrl } from "@/config";
 import { BRANDS, CONDITIONS, STORAGE_TYPE } from "@/config/constants";
 import { rateLimitByKey } from "@/lib/limiter";
 import { handleError } from "@/lib/utils";
+import { getImageUploadURLUseCase } from "@/use-access/files";
 import {
   createProductUseCase,
   updateProductUseCase,
@@ -94,4 +95,20 @@ export const updateProductAction = async (input) => {
     return handleError(error);
   }
   redirect("/products/" + id);
+};
+
+export const getPresignedPostUrlAction = async (input) => {
+  const schema = z.object({
+    dir: z.string(),
+    contentType: z.string(),
+  });
+  try {
+    const data = schema.parse(input);
+
+    const url = await getImageUploadURLUseCase(data);
+    return url;
+  } catch (error) {
+    console.log("create product error");
+    return handleError(error);
+  }
 };

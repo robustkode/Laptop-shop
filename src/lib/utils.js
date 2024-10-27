@@ -5,6 +5,8 @@ import crypto from "crypto";
 import { PublicError } from "./errors";
 import { ZodError } from "zod";
 import _ from "lodash";
+import { config } from "dotenv";
+config();
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -117,4 +119,56 @@ export function syncUrl(filters) {
     });
   }
   return query;
+}
+
+export function isValidURL(urlString) {
+  try {
+    new URL(urlString);
+    return true; // Valid URL
+  } catch {
+    return false; // Invalid URL
+  }
+}
+
+export async function uploadImage(getUrl, file, toast) {
+  if (!file || !file.type) {
+    return;
+  }
+  try {
+    const urlRes = await getUrl({
+      dir: "product",
+      contentType: file.type,
+    });
+
+    const { url, fields } = urlRes;
+
+    const data = {
+      ...fields,
+      "Content-Type": file.type,
+      file,
+    };
+    const formData = new FormData();
+    for (const name in data) {
+      formData.append(name, data[name]);
+    }
+
+    await fetch(url, {
+      method: "POST",
+      body: formData,
+      mode: "cors",
+    });
+    return (
+      process.env.NEXT_PUBLIC_FILE_BASE_URL +
+      urlRes["fields"].bucket +
+      "/" +
+      urlRes["fields"].key
+    );
+  } catch (err) {
+    toast({
+      title: "Something went wrong uploding image.",
+      description: err.message,
+      variant: "destructive",
+    });
+    return "";
+  }
 }

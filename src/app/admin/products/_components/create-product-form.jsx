@@ -24,6 +24,7 @@ import { LoaderButton } from "@/components/loader-button";
 import { useFormState, useFormStatus } from "react-dom";
 import {
   createProductAction,
+  getPresignedPostUrlAction,
   postProductAction,
   updateProductAction,
 } from "../create/action";
@@ -49,10 +50,11 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn, uploadImage } from "@/lib/utils";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { apiClient } from "@/lib/api-client";
+import DropImage from "./drop-image";
 
 const schema = z.object({
   name: z.string().min(5, { message: "Too short" }),
@@ -67,7 +69,6 @@ const schema = z.object({
   ram: z.coerce.number({ message: "Enter number!" }),
   storage: z.coerce.number({ message: "Enter number!" }),
   storageType: z.enum(STORAGE_TYPE.map((s) => s.value)),
-  images: z.string(),
   tags: z.string(),
   id: z.string().optional(),
 });
@@ -98,12 +99,15 @@ export default function ProductForm({
     queryFn: getAllTags,
   });
 
+  const { toast } = useToast();
+
   const [selectedTags, setSelectedTags] = useState(
     data ? initSelected(productTags) : []
   );
   const [tagValue, setTagValue] = useState("");
   const [similarTags, setSimilarTags] = useState([]);
   const [showSimilar, setShowSimilar] = useState(false);
+  const [file, setFile] = useState(data?.coverImage || null);
 
   const form = useForm({
     mode: "onchange",
@@ -145,14 +149,23 @@ export default function ProductForm({
   const { execute, isPending, error } = useActionWrapper(
     data ? updateProductAction : createProductAction
   );
-  const onSubmit = (values) => {
+
+  const { execute: getUrl } = useActionWrapper(getPresignedPostUrlAction);
+
+  const onSubmit = async (values) => {
+    const urlRes = await uploadImage(getUrl, file, toast);
+
     const tags = selectedTags.map((tag) => {
       const tagWithId = allTags.find((t) => t.name === tag);
       return tagWithId
         ? { id: tagWithId.id, name: tag }
         : { id: null, name: tag };
     });
-    execute({ ...values, tags });
+    execute({
+      ...values,
+      tags,
+      images: urlRes ? urlRes : data?.images ? data.images : "",
+    });
   };
 
   const handleSetValue = (val, cat, setFun) => {
@@ -214,6 +227,7 @@ export default function ProductForm({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
+          <DropImage img={file} setImg={setFile} />
           <FormField
             control={form.control}
             name="name"
