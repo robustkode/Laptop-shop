@@ -25,7 +25,7 @@ export default function CartPage() {
       <Container className={"my-12"}>
         <div className="flex flex-col min-h-[50vh]">
           {!cartProducts || !cartProducts.length ? (
-            <div className="flex flex-col w-full justify-center mt-16">
+            <div className="w-full flex flex-col  justify-center mt-16">
               <h1 className="text-center">No product in the cart.</h1>
               <div className="flex items-center justify-center font-header">
                 <p className="font-header">Look at products,</p>
