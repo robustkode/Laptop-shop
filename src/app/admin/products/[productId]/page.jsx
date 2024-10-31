@@ -41,7 +41,7 @@ export default function EditProduct({ params }) {
 
   if (data !== undefined && data.product === null) notFound();
   return (
-    <main>
+    <main className="py-12">
       <section>
         <Container as="div">
           <ProductVariants id={productId} />

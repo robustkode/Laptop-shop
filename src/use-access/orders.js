@@ -174,7 +174,6 @@ export async function getMonthlysStatUseCase(month) {
     lastMonthEnd
   );
 
-
   return {
     start: start,
     end: end,

@@ -6,7 +6,7 @@ import { getProductsWithTagUseCase } from "@/use-access/products";
 
 const cachedResponse = cache(
   async () => {
-    return getProductsWithTagUseCase({ name: "Classic", limit: 6 });
+    return getProductsWithTagUseCase({ name: "Gaming", limit: 6 });
   },
   ["gaming"],
   { revalidate: 2, tags: ["/", "gaming"] }

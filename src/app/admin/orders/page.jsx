@@ -84,7 +84,7 @@ const fetchProducts = (pageParam, status) => {
 export default function OrdersPage() {
   return (
     <main>
-      <Container>
+      <Container className={"py-12"}>
         <Tabs defaultValue="new">
           <TabsList className="grid max-w-[400px] grid-cols-2">
             <TabsTrigger value="new">New</TabsTrigger>

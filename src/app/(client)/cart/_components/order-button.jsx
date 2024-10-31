@@ -4,21 +4,23 @@ import { orderProductAction } from "../action";
 import { useToast } from "@/hooks/use-toast";
 import { useCartContext } from "@/providers/cart-context";
 import useActionWrapper from "@/lib/action-wrapper";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-// const PRODUCT = {
-//   id: "cf4e8512-727d-4ec8-a4ff-d74d27c87fcb",
-//   productVariantId: "af467bee-0d80-40be-a05c-9194a0ede687",
-//   value: "Green",
-//   quantity: 2,
-// };
 export default function OrderButton({
   order: { id, productVariant, quantity },
 }) {
+  const { status } = useSession();
   const { addRemoveCartItem } = useCartContext();
   const { toast } = useToast();
   const { execute, isPending } = useActionWrapper(orderProductAction);
+  const router = useRouter();
 
   const handleOrder = async () => {
+    if (status !== "authenticated") {
+      router.push("/sign-in?callbackUrl=/cart");
+      return;
+    }
     const params = { id, quantity };
     if (productVariant) {
       (params.value = productVariant.value),

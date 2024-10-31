@@ -5,13 +5,13 @@ import Link from "next/link";
 export default function ProductCatalog({ header, products }) {
   return (
     <Container>
-      <h2 className="sub-header">{header}</h2>
-      <div className="grid sm:grid-cols-3 md:grid-cols-4 grid-cols-2 gap-4 sm:gap-8">
+      <h2 className="sub-header my-4">{header}</h2>
+      <div className="grid sm:grid-cols-3 md:grid-cols-4 grid-cols-2 gap-6 sm:gap-8">
         {products.map((product) => (
           <Link key={product.id} href={"/products/" + product.id}>
             <div>
               <Image
-                src="/laptop.jpg"
+                src={product.images || "/laptop.jpg"}
                 width={200}
                 height={200}
                 alt="product image"

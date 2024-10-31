@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/session";
 
 export const GET = async (req) => {
   try {
-    const user = await assertModerator();
+    const user = await assertAuthenticated();
     const orders = await getUserOrders(user.id);
     return new Response(JSON.stringify(orders));
   } catch (error) {

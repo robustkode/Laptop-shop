@@ -23,7 +23,7 @@ export default function CartPage() {
     <main>
       <PageHero {...HERO} />
       <Container className={"my-12"}>
-        <div className="flex flex-col min-h-[50vh]">
+        <div className="flex flex-col min-h-[50vh] gap-12">
           {!cartProducts || !cartProducts.length ? (
             <div className="w-full flex flex-col  justify-center mt-16">
               <h1 className="text-center">No product in the cart.</h1>

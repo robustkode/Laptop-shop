@@ -1,4 +1,4 @@
-export const PRODUCTS_PER_PAGE = 3;
+export const PRODUCTS_PER_PAGE = 6;
 
 export const EQUALITY = {
   equal: "equal",
@@ -9,6 +9,9 @@ export const EQUALITY = {
 export const BRANDS = [
   { value: "apple", label: "Apple" },
   { value: "lenevo", label: "Lenevo" },
+  { value: "acer", label: "Acer" },
+  { value: "asus", label: "Asus" },
+  { value: "corsair", label: "CORSAIR" },
   { value: "other", label: "Others" },
 ];
 

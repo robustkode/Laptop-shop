@@ -84,11 +84,12 @@
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
 
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
+    --chart-1: 218 100% 37%;
+    --chart-2: 214 98% 45%;
     --chart-3: 160 60% 45%;
-    --chart-4: 160 60% 45%;
-    --chart-5: 160 60% 45%;
+    --chart-4: 215 18% 18%;
+    --chart-5: 38 94% 37%;
+    --chart-6: 57 100% 50%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -147,8 +148,6 @@
 .header {
   @apply text-header font-header;
 }
-
-
 
 /* icons */
 

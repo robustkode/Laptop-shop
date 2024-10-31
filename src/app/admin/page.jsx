@@ -38,7 +38,7 @@ export default function StatPage() {
   const growthRates = useMemo(() => {
     if (data) {
       return {
-        buyers: getGrowthPercentage(data.buyers, data.lBuyers),
+        buyers: getGrowthPercentage(data.buyers, data.lMBuyers),
         sales: getGrowthPercentage(data.sandR[0].sales, data.lMSandR[0].sales),
         revenue: getGrowthPercentage(
           data.sandR[0].revenue,
@@ -49,7 +49,7 @@ export default function StatPage() {
   }, [data]);
 
   return (
-    <main>
+    <main className="my-12">
       <Container>
         <SaleGraph month={month} />
         <div className="flex justify-between my-6">
@@ -88,12 +88,14 @@ export default function StatPage() {
                 <div className="absolute top-3 right-3">
                   {growthRates.buyers ? (
                     growthRates.buyers > 0 ? (
-                      <div className="bg-green-700/50 rounded-full flex items-center justify-center p-2 text-green-300">
-                        <ArrowUp className="" /> <p>{growthRates.buyers}%</p>
+                      <div className="bg-green-700/70 rounded-full flex items-center justify-center p-1 text-green-100 text-[12px]">
+                        <ArrowUp className="h-[16px] w-[16px]" />
+                        <p>{growthRates.buyers}%</p>
                       </div>
                     ) : (
-                      <div className="bg-red-700/50 rounded-full flex items-center justify-center p-2 text-red-300">
-                        <ArrowDown className="" /> <p>{growthRates.buyers}%</p>
+                      <div className="bg-red-700/50 rounded-full flex items-center justify-center p-1 text-red-300 text-[12px]">
+                        <ArrowDown className="h-[16px] w-[16px]" />
+                        <p>{growthRates.buyers}%</p>
                       </div>
                     )
                   ) : (
@@ -107,12 +109,14 @@ export default function StatPage() {
                 <div className="absolute top-3 right-3">
                   {growthRates.sales ? (
                     growthRates.sales > 0 ? (
-                      <div className="bg-green-700/70 rounded-full flex items-center justify-center p-2 text-green-100">
-                        <ArrowUp className="" /> <p>{growthRates.sales}%</p>
+                      <div className="bg-green-700/70 rounded-full flex items-center justify-center p-1 text-green-100 text-[12px]">
+                        <ArrowUp className="h-[16px] w-[16px]" />{" "}
+                        <p>{growthRates.sales}%</p>
                       </div>
                     ) : (
-                      <div className="bg-red-700/50 rounded-full flex items-center justify-center p-2 text-red-300">
-                        <ArrowDown className="" /> <p>{growthRates.sales}%</p>
+                      <div className="bg-red-700/50 rounded-full flex items-center justify-center p-1 text-red-300 text-[12px]">
+                        <ArrowDown className="h-[16px] w-[16px]" />{" "}
+                        <p>{growthRates.sales}%</p>
                       </div>
                     )
                   ) : (
@@ -125,12 +129,14 @@ export default function StatPage() {
                 <div className="absolute top-3 right-3">
                   {growthRates.revenue ? (
                     growthRates.revenue > 0 ? (
-                      <div className="bg-green-700/80 rounded-full flex items-center justify-center p-2 text-white">
-                        <ArrowUp className="" /> <p>{growthRates.revenue}%</p>
+                      <div className="bg-green-700/70 rounded-full flex items-center justify-center p-1 text-green-100 text-[12px]">
+                        <ArrowUp className="h-[16px] w-[16px]" />
+                        <p>{growthRates.revenue}%</p>
                       </div>
                     ) : (
-                      <div className="bg-red-700/50 rounded-full flex items-center justify-center p-2 text-red-200">
-                        <ArrowDown className="" /> <p>{growthRates.revenue}%</p>
+                      <div className="bg-red-700/50 rounded-full flex items-center justify-center p-1 text-red-300 text-[12px]">
+                        <ArrowDown className="h-[16px] w-[16px]" />{" "}
+                        <p>{growthRates.revenue}%</p>
                       </div>
                     )
                   ) : (

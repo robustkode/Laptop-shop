@@ -18,7 +18,7 @@ export default function Home() {
     <main className="">
       <section className="bg-primary-var text-primary-foreground my-0 py-12">
         <Container as="div">
-          <h1 className="header text-4xl pb-6">
+          <h1 className="font-oswald uppercase tracking-wide text-4xl pb-6">
             Discover the Future of Laptops: Power, Performance, and Portability
           </h1>
           <div className="flex gap-12">

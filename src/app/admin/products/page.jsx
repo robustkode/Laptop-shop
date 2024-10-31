@@ -50,7 +50,12 @@ export default function Products() {
 
   return (
     <main>
-      <Container>
+      <Container className={"my-12"}>
+        <div className="flex justify-end">
+          <Button>
+            <Link href={"/admin/products/create"}>Post a Product</Link>
+          </Button>
+        </div>
         {isPending ? (
           <div className="grid md:grid-cols-2 gap-8 py-12">
             {[...Array(8)].map((_, i) => (
@@ -81,7 +86,10 @@ export default function Products() {
               ""
             )}
             {data.pages.map((page, i) => (
-              <div key={page.currentPage} className="grid md:grid-cols-2 gap-8">
+              <div
+                key={page.currentPage}
+                className="grid md:grid-cols-2 gap-12 pb-12"
+              >
                 {page.products?.map((d) => (
                   <div key={d.id} className="relative">
                     <div className="pl-4">

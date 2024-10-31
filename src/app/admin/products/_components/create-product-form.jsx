@@ -215,7 +215,7 @@ export default function ProductForm({
   }, [allTags]);
 
   return (
-    <div className="">
+    <div className="my-12">
       {!data ? (
         <h2 className="page-header mb-6">Post a product</h2>
       ) : (
@@ -520,12 +520,15 @@ export default function ProductForm({
               </AlertDescription>
             </Alert>
           )}
-          <LoaderButton
-            isLoading={isPending || isUpoloadingPending}
-            className={"mt-8 ml-auto"}
-          >
-            {data ? "Update" : "Post"}
-          </LoaderButton>
+          <div className="flex justify-end gap-6 items-end">
+            {data && <Button variant="link">Delete product</Button>}
+            <LoaderButton
+              isLoading={isPending || isUpoloadingPending}
+              className={""}
+            >
+              {data ? "Update" : "Post"}
+            </LoaderButton>
+          </div>
         </form>
       </Form>
     </div>

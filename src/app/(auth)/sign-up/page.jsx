@@ -9,8 +9,8 @@ export default async function SignUp() {
     redirect("/");
   }
   return (
-    <main>
-      <Container>
+    <main className="">
+      <Container className={"min-h-[90vh] flex items-center justify-center"}>
         <SignUpForm />;
       </Container>
     </main>

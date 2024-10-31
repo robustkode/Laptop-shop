@@ -42,7 +42,7 @@ export const createProductAction = async (input) => {
   let id;
   try {
     const data = schema.parse(input);
-    await rateLimitByKey({ key: input.email, limit: 3, window: 10000 });
+    // await rateLimitByKey({ key: input.email, limit: 3, window: 10000 });
     const [newTags, existingTags] = partition(
       data.tags,
       (tag) => tag.id === null

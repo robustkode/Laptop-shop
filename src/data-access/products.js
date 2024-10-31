@@ -148,8 +148,7 @@ export async function getFiteredProducts({
 
     const _ = prepareComparisonQuery(ram, RAM, "ram");
 
-   conditions.ram = n;
-
+    conditions.ram = n;
   }
 
   //order
@@ -265,6 +264,7 @@ export async function getProductsByTag(tagId, limit = 6) {
       },
     },
   });
+  console.log(result, "tags");
 
   result = result.filter((_) => _.product.status === "active");
   return result;

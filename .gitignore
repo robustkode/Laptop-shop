@@ -38,8 +38,7 @@ next-env.d.ts
 
 next.md
 sqlite.db
-./src/db/seed.js
-./src/app/seed/
+src/db/seed.js
 
 
 

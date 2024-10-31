@@ -24,6 +24,7 @@ import { redirect, useRouter, useSearchParams } from "next/navigation";
 import { useServerAction } from "zsa-react";
 import { signUpAction } from "./action";
 import useActionWrapper from "@/lib/action-wrapper";
+import Link from "next/link";
 
 const signUpSchema = (phone = true) => {
   const identifier = !phone
@@ -85,17 +86,19 @@ export default function SignUpForm() {
   const form = useForm({
     resolver: zodResolver(signUpSchema(phoneMode)),
     defaultValues: {
-      password: "Aa1234!",
-      passwordConfirm: "Aa1234!",
-      name: "ousa",
-      email: "user2@test.com",
+      // password: "Aa1234!",
+      // passwordConfirm: "Aa1234!",
+      // name: "ousa",
+      // email: "user2@test.com",
     },
   });
 
   const onSubmit = async (values) => {
     await execute(values);
     if (!error) {
-      router.push(`/sign-in?callbackUrl=${callBackUrl ? callBackUrl : "/"}`);
+      router.push(
+        `/sign-in?callbackUrl=${callBackUrl ? callBackUrl : "/cart"}`
+      );
     }
   };
 
@@ -166,7 +169,7 @@ export default function SignUpForm() {
                     <Input
                       {...field}
                       className="w-full"
-                      placeholder="Enter your email"
+                      placeholder="Enter your name"
                     />
                   </FormControl>
                 </FormItem>
@@ -228,6 +231,19 @@ export default function SignUpForm() {
         <div className="text-center py-2">
           <Button variant="link" onClick={() => signIn("google")}>
             Sign up with Google
+          </Button>
+          <Button
+            variant="link"
+            className="text-foreground hover:no-underline group"
+          >
+            <Link
+              href={`/sign-in?callbackUrl=${callBackUrl ? callBackUrl : "/"}`}
+            >
+              Have account?{" "}
+              <span className="group-hover:underline text-primary">
+                Sign in
+              </span>
+            </Link>
           </Button>
         </div>
       </div>

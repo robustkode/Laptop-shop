@@ -8,6 +8,13 @@ export async function createTags(values) {
     .values(values)
     .onConflictDoNothing({ target: tags.name })
     .returning();
+  //! ewmove this
+  if (!creatdTags.length) {
+    const existingTags = await db.query.tags.findFirst({
+      where: eq(tags.name, values.name),
+    });
+    return [existingTags];
+  }
   return creatdTags;
 }
 

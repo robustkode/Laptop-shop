@@ -1,4 +1,4 @@
-export function ProductVariantDAL(variants) {
+export function ProductVariantDom(variants) {
   let flattendData = variants.map((variant) => {
     if (!variant.productVariantValues.length) {
       return;

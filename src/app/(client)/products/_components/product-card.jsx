@@ -27,10 +27,15 @@ export default function ProductCard({
   images,
 }) {
   return (
-    <div className={cn("flex sm:flex-col basis-64 grow gap-4 flex-wrap sm:flex-nowrap", style)}>
+    <div
+      className={cn(
+        "flex sm:flex-col basis-64 grow gap-4 flex-wrap sm:flex-nowrap",
+        style
+      )}
+    >
       <div className="">
         <Image
-          src={images}
+          src={images || "/laptop.jpg"}
           alt="alt"
           width={0}
           height={0}
@@ -66,12 +71,13 @@ export default function ProductCard({
             )}
 
             <div className="flex flex-wrap gap-2">
-              {/* {tags.map((tag, i) => (
+              {tags.map((tag, i) => (
                 <p key={i} className={COLOR[tag.tag.color]}>
                   {tag.tag.name}
                 </p>
-              ))} */}
+              ))}
             </div>
+            {/* <div>{JSON.stringify(tags)}</div> */}
             <h4 className="font-header text-primary text-lg">
               {price}{" "}
               <span className="text-muted-foreground text-md">Birr</span>

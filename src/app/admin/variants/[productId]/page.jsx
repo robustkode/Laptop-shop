@@ -9,10 +9,11 @@ import {
 import Container from "@/components/container";
 import _ from "lodash";
 
-//! change this to client component and fetch data using react-query
+export const dynamic = "force-dynamic";
+
 export default async function AddVariant({ params }) {
   const { productId } = params;
-  //2! all variants by category
+
   const allVariantsPromise = getAllVariantsName();
 
   const allProductVariantsPromise = getAllProductVariantsNames(productId);
@@ -26,17 +27,12 @@ export default async function AddVariant({ params }) {
     allProductVariantNames.map((v) => v.variant.name)
   );
 
-  // const vario = await getSimilarProductVariant(
-  //   "c991bf01-c3c9-45df-afd3-d4d6641d690b",
-  //   "729e9f46-77cf-4a62-9f34-08767b687f5f",
-  //   "redo"
-  // );
   return (
     <main>
-      <Container>
+      <Container className={"my-12 text-xl"}>
         {/* <div>{JSON.stringify(vario)}oops</div> */}
-        <h1 className="page-header">
-          Create variant for: id: <span>{productId}</span>
+        <h1 className="font-bold pb-4">
+          Variant for id: <span className="font-normal">{productId}</span>
         </h1>
         <div className="flex justify-center w-full">
           <div className="basis-96 shrink">

@@ -21,7 +21,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 const schema = z.object({
-  name: z.string().min(2, { message: "Too short" }),
+  // name: z.string().min(2, { message: "Too short" }),
   price: z.coerce.number(),
   value: z.union([
     z.string().min(2, { message: "Too short" }),
@@ -58,24 +58,26 @@ export default function AddVariantForm({
   const { execute, isPending, error } = useActionWrapper(addVaraintAction);
 
   const handleFocus = () => {
+    console.log("False");
     setShowOptions(true);
   };
 
   //! fix onblur
   const handleBlur = () => {
+    console.log("True");
     setTimeout(() => {
       setShowOptions(false);
     }, 300);
   };
 
   const handleVariantClick = (value) => {
-    // if (value.have) return;
     form.setValue("name", value.name);
-    nameRef.value = "";
+    nameRef.current.value = "";
   };
 
   const onSubmit = async (values) => {
-    execute(values);
+    const name = nameRef.current.value;
+    execute({ name, ...values });
   };
   return (
     <Form {...form}>
@@ -93,8 +95,8 @@ export default function AddVariantForm({
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     ref={nameRef}
-                    {...field}
-                    placeholder="Color"
+                    placeholder="Example: Color"
+                    required
                   />
                 </FormControl>
                 <FormMessage />

@@ -27,10 +27,12 @@ export default function Navbar() {
           </Button>
         </div>
         <nav className="col-span-2 order-3 sm:order-2 small-nav:col-span-1  py-4 hidden sm:block">
-          <ul className="flex justify-between gap-4 items-center">
+          <ul className="flex justify-between gap-4 items-center font-bold">
             <li>
               <Button variant="nav-link">
-                <Link href="/products">Laptops</Link>
+                <Link href="/products" className="font-bold">
+                  Laptops
+                </Link>
               </Button>
             </li>
 
@@ -52,7 +54,9 @@ export default function Navbar() {
             </li>
             <li>
               <Button variant="nav-link">
-                <Link href="/orders">Orders</Link>
+                <Link href="/orders" className="font-bold">
+                  Orders
+                </Link>
               </Button>
             </li>
           </ul>
@@ -81,7 +85,9 @@ export default function Navbar() {
             <ul className="flex justify-between gap-4 items-center">
               <li>
                 <Button variant="nav-link">
-                  <Link href="/products">Laptops</Link>
+                  <Link href="/products" className="font-bold">
+                    Laptops
+                  </Link>
                 </Button>
               </li>
 
@@ -103,7 +109,9 @@ export default function Navbar() {
               </li>
               <li>
                 <Button variant="nav-link">
-                  <Link href="/orders">Orders</Link>
+                  <Link href="/orders" className="font-bold">
+                    Orders
+                  </Link>
                 </Button>
               </li>
             </ul>

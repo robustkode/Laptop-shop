@@ -16,7 +16,7 @@ import {
 import { assertModerator } from "@/lib/authorization";
 import { NotFoundError, PublicError } from "@/lib/errors";
 import { compare } from "@/lib/utils";
-import { partition } from "lodash";
+import { partition, isEmpty } from "lodash";
 
 export async function createProductUseCase({ input, newTags, existingTags }) {
   //await assertModerator();
@@ -28,7 +28,7 @@ export async function createProductUseCase({ input, newTags, existingTags }) {
   const productId = await createProduct(input);
   let createdTags = [];
 
-  if (newTags) {
+  if (!isEmpty(newTags)) {
     try {
       const inputTags = newTags.map((v) => {
         return {
@@ -37,7 +37,8 @@ export async function createProductUseCase({ input, newTags, existingTags }) {
       });
       createdTags = await createTags(inputTags);
     } catch (_) {
-      console.log(_);
+      console.log("error creating newTahs", newTags);
+      // console.log(_, "error creating newTahs");
     }
   }
   const allTags = existingTags
@@ -49,7 +50,11 @@ export async function createProductUseCase({ input, newTags, existingTags }) {
         return { productId: productId, tagId: v.id };
       });
       await createProductTags(inputTags);
-    } catch (_) {}
+    } catch (_) {
+      console.log("error creating allTags", allTags);
+
+      console.log(_, "error crating producttags");
+    }
   }
 
   return productId;
@@ -110,6 +115,7 @@ export async function updateProductUseCase({ input, newTags, existingTags }) {
 export async function getProductsWithTagUseCase(input) {
   const { name } = input;
   const existingTag = await getTagByname(name);
+  console.log(existingTag, "hjhj");
 
   if (!existingTag) {
     return [];

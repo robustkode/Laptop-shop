@@ -1,7 +1,6 @@
 import Container from "@/components/container";
 import { Button } from "@/components/ui/button";
 import VariantsList from "@/components/variants-list";
-import { ProductVariantDAL } from "@/data-access-layer/variants";
 import { getProductById } from "@/data-access/products";
 import { getAllProductVariants } from "@/data-access/variants";
 import { cache } from "@/lib/cache";
@@ -15,6 +14,7 @@ import { ProductVariants } from "../_components/variants-list";
 import { Card } from "@/components/ui/card";
 import HelpCard from "../../_components/help-card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ProductVariantDom } from "@/data-object-mapper/variants";
 const cachedProduct = cache(
   async (id) => {
     return getProductById(id);
@@ -183,7 +183,7 @@ async function ProductSuspense({ id }) {
 async function VariantsSuspense({ id }) {
   const variantsData = await cachedVariants(id);
   if (!variantsData.length) return;
-  const variants = ProductVariantDAL(variantsData);
+  const variants = ProductVariantDom(variantsData);
   if (!variants.length) return;
 
   const groupedData = _.chain(variants)
